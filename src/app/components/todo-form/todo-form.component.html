@@ -1,0 +1,39 @@
+<div class="card shadow mt-5">
+  <div class="card-header bg-dark text-light">
+      <h4>Adicionar Tarefa</h4>
+  </div>
+
+  <div class="card-body">
+      <form [formGroup]="formTodo">
+        <form class="row g-3">
+
+          <div class="col-12">
+            <label for="title" class="form-label">Titulo</label>
+            <input type="text" formControlName="title" class="form-control" id="title" placeholder="1234 Main St">
+          </div>
+          <div class="col-12">
+            <label for="description" class="form-label">Descrição</label>
+             <textarea class="form-control" formControlName="description" id="description" rows="3"></textarea>
+          </div>
+
+          <div class="col-12">
+            <select class="form-select" formControlName="status" aria-label="Default select example">
+              <option selected>Escolha o Status</option>
+              <option value="1">Pendente</option>
+              <option value="2">Em Andamento</option>
+              <option value="3">Concluido</option>
+            </select>
+          </div>
+          <div class="col-12">
+
+          <button class="btn btn-primary" (click)="onSubmit()" [disabled]="formTodo.invalid">
+            <span class="material-symbols-outlined">
+              add
+            </span>
+            Salvar Tarefa
+          </button>
+          </div>
+        </form>
+      </form>
+  </div>
+</div>

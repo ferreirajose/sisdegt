@@ -1,0 +1,13 @@
+.actions{
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  .edit {
+    color:#0d6efd;
+    margin-right: 10px;
+  }
+
+  .remove {
+    color: #F00;
+  }
+}

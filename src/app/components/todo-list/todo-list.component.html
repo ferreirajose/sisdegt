@@ -1,0 +1,49 @@
+<div class="card shadow mt-5">
+  <div class="card-header bg-dark text-light">
+      <h4>Tarefas</h4>
+  </div>
+
+  <div class="card-body">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col" class="text-center">ID</th>
+          <th scope="col">Titulo</th>
+          <th scope="col">Descrição</th>
+          <th scope="col">Status</th>
+          <th scope="col" class="text-center">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngIf="(todos$ | async) as todos; else loading">
+          <tr *ngFor="let todo of todos">
+            <th  class="text-center" scope="row">{{ todo.id }}</th>
+            <td>{{todo.title }}</td>
+            <td>{{todo.description }}</td>
+            <td>
+              <span [appStatusBadge]="todo.status">{{todo.status | statusTransalater }}</span>
+          </td>
+          <td class="actions">
+            <div class="edit"  (click)="edit(todo)">
+              <span class="material-symbols-outlined">
+              edit
+              </span>
+            </div>
+            <div class="remove" (click)="remove(todo)">
+              <span class="material-symbols-outlined">
+                delete
+                </span>
+            </div>
+          </td>
+          </tr>
+        </ng-container>
+        <ng-template #loading>
+          Carregando usuário...
+        </ng-template>
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>
