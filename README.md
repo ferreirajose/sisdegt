@@ -1,27 +1,46 @@
-# Sisdegt
+# Running an Angular Project
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.1.
+This README.md guide provides instructions on how to run an Angular project from scratch. Whether you're starting a new project or collaborating with others, these steps will help you set up and run the Angular project seamlessly.
 
-## Development server
+## Prerequisites
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Before you begin, ensure you have the following installed:
 
-## Code scaffolding
+- Node.js: Angular requires Node.js to be installed. You can download and install it from [Node.js website](https://nodejs.org/).
+- npm (Node Package Manager): npm usually comes with Node.js installation.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Installation
 
-## Build
+1. **Install Angular CLI**:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+   Angular CLI (Command Line Interface) is a powerful tool that simplifies the process of creating and managing Angular projects.
 
-## Running unit tests
+   Open your terminal or command prompt and run the following command to install Angular CLI globally:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+   ```
+   npm install -g @angular/cli
+    ```
 
-## Running end-to-end tests
+2. **Clone the Angular project repository:**
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+    ```
+    git clone https://github.com/ferreirajose/sisdegt.git
+    ```
 
-## Further help
+## Running the Project
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+1. **Start the development server:**
+
+    ```
+    npm start
+    ```
+2. **Run unit tests:**
+    
+    ```
+    npm run test
+    ```
+3. **Build the project:**
+    ```
+    ng build --prod
+    ```
+
