@@ -30,6 +30,7 @@ module.exports = function (config) {
       subdir: '.',
       reporters: [
         { type: 'html' },
+        { type: 'lcov'},
         { type: 'text-summary' }
       ]
     },
@@ -38,16 +39,23 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers : ['FirefoxHeadless'],
+    browsers: ["ChromeHeadlessNoSandbox"],
+    //browsers : ['FirefoxHeadless'],
     singleRun: false,
     restartOnFileChange: true,
+    // customLaunchers: {
+    //   'FirefoxHeadless': {
+    //       base: 'Firefox',
+    //       flags: [
+    //           '-headless',
+    //       ],
+    //   }
+    // },
     customLaunchers: {
-      'FirefoxHeadless': {
-          base: 'Firefox',
-          flags: [
-              '-headless',
-          ],
-      }
-  },
+      ChromeHeadlessNoSandbox: {
+        base: "ChromeHeadless",
+        flags: ["--no-sandbox"],
+      },
+    },
   });
 };

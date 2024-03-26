@@ -35,7 +35,6 @@ export class TodoListComponent {
         map(todos => todos.filter(todo => todo.status === status['val'] ))
       );
     } else {
-      // If status is null, show all todos
       this.todos$ = this.todoService.getList();
     }
   }
@@ -63,8 +62,6 @@ export class TodoListComponent {
   }
 
   compareFilter(t1: any, t2: any) {
-    console.log(t1, 't1')
-    console.log(t2, 't2')
     return t1 && t2 ? ( t1.val === t2.val) : t1 && t2;
   }
 
