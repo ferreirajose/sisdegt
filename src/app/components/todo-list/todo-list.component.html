@@ -27,36 +27,45 @@
         </tr>
       </thead>
       <tbody>
-        <ng-container *ngIf="(todos$ | async) as todos; else loading">
-          <tr *ngFor="let todo of todos">
-            <th  class="text-center" scope="row">{{ todo.id }}</th>
-            <td>{{todo.title }}</td>
-            <td>{{todo.description }}</td>
-            <td>
-              {{todo.dateCreate | date: 'dd/MM/yyyy: hh:mm:ss' }}
-            </td>
-            <td>
-              {{todo.dateConclusion | date: 'dd/MM/yyyy: hh:mm:ss'}}
-            </td>
-            <td>
-              <span [appStatusBadge]="todo.status">{{todo.status | statusTransalater }}</span>
-          </td>
-          <td class="actions">
-            <div class="edit"  (click)="edit(todo)">
-              <span class="material-symbols-outlined">
-              edit
-              </span>
-            </div>
-            <div class="remove" (click)="remove(todo)">
-              <span class="material-symbols-outlined">
-                delete
-                </span>
-            </div>
-          </td>
-          </tr>
+        <ng-container *ngIf="todos$ | async as todos; else loading">
+          <ng-container *ngIf="todos.length > 0; else noTodos">
+            <tr *ngFor="let todo of todos">
+              <th  class="text-center" scope="row">{{ todo.id }}</th>
+              <td>{{todo.title }}</td>
+              <td>{{todo.description }}</td>
+              <td>
+                {{todo.dateCreate | date: 'dd/MM/yyyy: hh:mm:ss' }}
+              </td>
+              <td>
+                {{todo.dateConclusion | date: 'dd/MM/yyyy: hh:mm:ss'}}
+              </td>
+              <td>
+                <span [appStatusBadge]="todo.status">{{todo.status | statusTransalater }}</span>
+              </td>
+              <td class="actions">
+                <div class="edit"  (click)="edit(todo)">
+                  <span class="material-symbols-outlined">
+                    edit
+                  </span>
+                </div>
+                <div class="remove" (click)="remove(todo)">
+                  <span class="material-symbols-outlined">
+                    delete
+                  </span>
+                </div>
+              </td>
+            </tr>
+          </ng-container>
         </ng-container>
         <ng-template #loading>
-          Carregando Tarefas ...
+          <tr>
+            <td colspan="7" class="text-center">Aguarde...</td>
+          </tr>
+        </ng-template>
+        <ng-template #noTodos>
+          <tr>
+            <td colspan="7" class="text-center">Não há registros Disponiveis</td>
+          </tr>
         </ng-template>
       </tbody>
 
