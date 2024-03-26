@@ -39,23 +39,16 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ["ChromeHeadlessNoSandbox"],
-    //browsers : ['FirefoxHeadless'],
+    browsers : ['FirefoxHeadless'],
     singleRun: false,
     restartOnFileChange: true,
-    // customLaunchers: {
-    //   'FirefoxHeadless': {
-    //       base: 'Firefox',
-    //       flags: [
-    //           '-headless',
-    //       ],
-    //   }
-    // },
     customLaunchers: {
-      ChromeHeadlessNoSandbox: {
-        base: "ChromeHeadless",
-        flags: ["--no-sandbox"],
-      },
+      'FirefoxHeadless': {
+          base: 'Firefox',
+          flags: [
+              '-headless',
+          ],
+      }
     },
   });
 };
