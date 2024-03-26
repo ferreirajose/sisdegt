@@ -5,11 +5,9 @@ export interface Todo {
   title: string;
   description: string
   status: StatusEnum;
-  isFavorite: boolean;
+  isFavorite?: boolean;
   dateCreate: Date;
   dateConclusion:Date;
 }
 
 export type Item = Omit<Todo, "id"|"isFavorite">;
-
-//  { title: string, description: string, status: StatusEnum, dateCreate: Date, dateConclusion: Date}

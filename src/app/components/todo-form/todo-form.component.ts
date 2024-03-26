@@ -47,14 +47,5 @@ export class TodoFormComponent {
     this.formTodo.reset();
   }
 
-  get status () {
-    return Object.keys(StatusEnum).map((key) => StatusEnum[key as keyof typeof StatusEnum]).filter(val => typeof val === 'string').map(item => {
-      return { val: item, label: StatusEnumMensagem[StatusEnum[item]]}
-    })
-  }
-
-  compareFilter(t1: any, t2: any) {
-    return t1 && t2 ? ( t1.val === t2.val) : t1 && t2;
-  }
 
 }

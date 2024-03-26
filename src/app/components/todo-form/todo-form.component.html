@@ -5,7 +5,7 @@
 
   <div class="card-body">
       <form [formGroup]="formTodo">
-        <form class="row g-3">
+        <div class="row g-3">
 
           <div class="col-12">
             <label for="title" class="form-label">Título</label>
@@ -16,14 +16,14 @@
              <textarea class="form-control" formControlName="description" id="description" placeholder="Descrição" rows="3"></textarea>
           </div>
 
-          <div class="col-12">
+          <!-- <div class="col-12">
             <label for="status" class="form-label">Status</label>
 
             <select class="form-select" formControlName="status" id="status" [compareWith]="compareFilter" aria-label="Default select example">
-              <!-- <option selected>Selecione</option> -->
+               <option selected>Selecione</option>
               <option *ngFor="let statu of status" [ngValue]="statu">{{ statu.label }}</option>
             </select>
-          </div>
+          </div> -->
 
           <div class="col-12">
 
@@ -59,7 +59,7 @@
             Salvar Tarefa
           </button>
           </div>
-        </form>
+        </div>
       </form>
   </div>
 </div>

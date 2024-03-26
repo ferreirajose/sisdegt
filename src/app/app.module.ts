@@ -19,6 +19,7 @@ import { TodoFormComponent } from './components/todo-form/todo-form.component';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { SharedModule } from './shared/shared.module';
+import { EditTodoComponent } from './components/todo-form/edit-todo/edit-todo.component';
 
 registerLocaleData(localePt);
 
@@ -26,6 +27,7 @@ registerLocaleData(localePt);
   declarations: [
     AppComponent,
     TodoFormComponent,
+    EditTodoComponent,
     TodoListComponent,
     PageNotFoundComponent
   ],

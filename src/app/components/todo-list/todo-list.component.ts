@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormControl } from '@angular/forms';
+
 import { ToastrService } from 'ngx-toastr';
-import { Observable, delay, map, tap } from 'rxjs';
+import { Observable, map } from 'rxjs';
+
 import { Todo } from 'src/app/interface/todo';
 import { StatusEnum, StatusEnumMensagem, TodoService } from '@shared/index';
-import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-todo-list',
@@ -13,9 +15,7 @@ import { FormControl } from '@angular/forms';
 })
 export class TodoListComponent {
 
-  // readonly todos$: Observable<Todo[]> = this.todoService.getList();
   todos$!: Observable<Todo[]>;
-
   statusControl = new FormControl('', []);
 
   constructor(
@@ -30,10 +30,8 @@ export class TodoListComponent {
   }
 
   filterByStatus(status: any | { val: StatusEnum, label: string}): void {
-    console.log(status, 'status')
     if (status !== null && status.val !== 'VAZIO') {
       this.todos$ = this.todoService.getList().pipe(
-        tap(val => console.log(val)),
         map(todos => todos.filter(todo => todo.status === status['val'] ))
       );
     } else {
