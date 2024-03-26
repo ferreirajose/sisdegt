@@ -8,7 +8,8 @@ export const TODOLIST: Todo[] = [
     status: StatusEnum.CONCLUIDO,
     description: 'dasdsad',
     isFavorite: false,
-    date: new Date('4-15-2020')
+    dateCreate: new Date('4-15-2020'),
+    dateConclusion: new Date('4-15-2020')
   },
   {
     id: 2,
@@ -16,7 +17,8 @@ export const TODOLIST: Todo[] = [
     status: StatusEnum.EM_ANDAMENTO,
     description: 'dasdsad',
     isFavorite: false,
-    date: new Date('5-15-2020')
+    dateCreate: new Date('4-15-2020'),
+    dateConclusion: new Date('4-15-2020')
   },
   {
     id: 3,
@@ -24,6 +26,7 @@ export const TODOLIST: Todo[] = [
     status: StatusEnum.PENDENTE,
     description: 'dasdsad',
     isFavorite: false,
-    date: new Date('6-15-2020')
+    dateCreate: new Date('4-15-2020'),
+    dateConclusion: new Date('4-15-2020')
   }
 ];

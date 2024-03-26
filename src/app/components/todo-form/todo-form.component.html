@@ -8,22 +8,48 @@
         <form class="row g-3">
 
           <div class="col-12">
-            <label for="title" class="form-label">Titulo</label>
-            <input type="text" formControlName="title" class="form-control" id="title" placeholder="1234 Main St">
+            <label for="title" class="form-label">Título</label>
+            <input type="text" formControlName="title" class="form-control" id="title" placeholder="Título">
           </div>
           <div class="col-12">
             <label for="description" class="form-label">Descrição</label>
-             <textarea class="form-control" formControlName="description" id="description" rows="3"></textarea>
+             <textarea class="form-control" formControlName="description" id="description" placeholder="Descrição" rows="3"></textarea>
           </div>
 
           <div class="col-12">
-            <select class="form-select" formControlName="status" aria-label="Default select example">
-              <option selected>Escolha o Status</option>
-              <option value="1">Pendente</option>
-              <option value="2">Em Andamento</option>
-              <option value="3">Concluido</option>
+            <label for="status" class="form-label">Status</label>
+
+            <select class="form-select" formControlName="status" id="status" [compareWith]="compareFilter" aria-label="Default select example">
+              <!-- <option selected>Selecione</option> -->
+              <option *ngFor="let statu of status" [ngValue]="statu">{{ statu.label }}</option>
             </select>
           </div>
+
+          <div class="col-12">
+
+            <div class="row">
+              <div class="col-xs-12 col-12 col-sm-6 col-md-4 form-group mb-3">
+                <label for="status" class="form-label">Início</label>
+
+                <input type="text" class="form-control mb-3" placeholder="Data de Início" bsDatepicker readonly  formControlName="dateCreate"
+                  [bsConfig]="{
+                    minDate: maxDate
+                  }"
+                />
+              </div>
+              <div class="col-xs-12 col-12 col-sm-6 col-md-4 form-group mb-3">
+                <label for="status" class="form-label">Fim</label>
+                <input type="text" class="form-control mb-3"
+                       placeholder="Data de Conclusão" bsDatepicker readonly formControlName="dateConclusion"
+                       [bsConfig]="{
+                        minDate: maxDate
+                      }"
+                 />
+              </div>
+            </div>
+
+          </div>
+
           <div class="col-12">
 
           <button class="btn btn-primary" (click)="onSubmit()" [disabled]="formTodo.invalid">
