@@ -1,5 +1,5 @@
 <div class="card shadow mt-5">
-  <div class="card-header bg-dark text-light">
+  <div class="card-header bg-pit text-light">
       <h4>Tarefas</h4>
   </div>
 
@@ -9,67 +9,68 @@
       <label for="status" class="form-label">Status</label>
 
       <select class="form-select" [formControl]="statusControl" [compareWith]="compareFilter" (change)="filterByStatus(statusControl.value)" id="status" aria-label="Default select example">
-        <!-- <option selected>Selecione</option> -->
         <option *ngFor="let statu of status" [ngValue]="statu">{{ statu.label }}</option>
       </select>
     </div>
 
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th scope="col" class="text-center">ID</th>
-          <th scope="col">Titulo</th>
-          <th scope="col">Descrição</th>
-          <th scope="col">Início</th>
-          <th scope="col">Fim</th>
-          <th scope="col">Status</th>
-          <th scope="col" class="text-center">Ações</th>
-        </tr>
-      </thead>
-      <tbody>
-        <ng-container *ngIf="todos$ | async as todos; else loading">
-          <ng-container *ngIf="todos.length > 0; else noTodos">
-            <tr *ngFor="let todo of todos">
-              <th  class="text-center" scope="row">{{ todo.id }}</th>
-              <td>{{todo.title }}</td>
-              <td>{{todo.description }}</td>
-              <td>
-                {{todo.dateCreate | date: 'dd/MM/yyyy: hh:mm:ss' }}
-              </td>
-              <td>
-                {{todo.dateConclusion | date: 'dd/MM/yyyy: hh:mm:ss'}}
-              </td>
-              <td>
-                <span [appStatusBadge]="todo.status">{{todo.status | statusTransalater }}</span>
-              </td>
-              <td class="actions">
-                <div class="edit"  (click)="edit(todo)">
-                  <span class="material-symbols-outlined">
-                    edit
-                  </span>
-                </div>
-                <div class="remove" (click)="remove(todo)">
-                  <span class="material-symbols-outlined">
-                    delete
-                  </span>
-                </div>
-              </td>
-            </tr>
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col" class="text-center">ID</th>
+            <th scope="col">Titulo</th>
+            <th scope="col">Descrição</th>
+            <th scope="col">Início</th>
+            <th scope="col">Fim</th>
+            <th scope="col">Status</th>
+            <th scope="col" class="text-center">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngIf="todos$ | async as todos; else loading">
+            <ng-container *ngIf="todos.length > 0; else noTodos">
+              <tr *ngFor="let todo of todos">
+                <th  class="text-center" scope="row">{{ todo.id }}</th>
+                <td>{{todo.title }}</td>
+                <td>{{todo.description }}</td>
+                <td>
+                  {{todo.dateCreate | date: 'dd/MM/yyyy: hh:mm:ss' }}
+                </td>
+                <td>
+                  {{todo.dateConclusion | date: 'dd/MM/yyyy: hh:mm:ss'}}
+                </td>
+                <td>
+                  <span [appStatusBadge]="todo.status">{{todo.status | statusTransalater }}</span>
+                </td>
+                <td class="actions">
+                  <div class="edit"  (click)="edit(todo)">
+                    <span class="material-symbols-outlined">
+                      edit
+                    </span>
+                  </div>
+                  <div class="remove" (click)="remove(todo)">
+                    <span class="material-symbols-outlined">
+                      delete
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            </ng-container>
           </ng-container>
-        </ng-container>
-        <ng-template #loading>
-          <tr>
-            <td colspan="7" class="text-center">Aguarde...</td>
-          </tr>
-        </ng-template>
-        <ng-template #noTodos>
-          <tr>
-            <td colspan="7" class="text-center">Não há registros Disponiveis</td>
-          </tr>
-        </ng-template>
-      </tbody>
+          <ng-template #loading>
+            <tr>
+              <td colspan="7" class="text-center">Aguarde...</td>
+            </tr>
+          </ng-template>
+          <ng-template #noTodos>
+            <tr>
+              <td colspan="7" class="text-center">Não há registros Disponiveis</td>
+            </tr>
+          </ng-template>
+        </tbody>
 
-    </table>
+      </table>
+    </div>
 
   </div>
 

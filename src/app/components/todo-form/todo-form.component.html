@@ -1,6 +1,9 @@
 <div class="card shadow mt-5">
-  <div class="card-header bg-dark text-light">
+  <div class="card-header bg-pit text-light">
       <h4>Adicionar Tarefa</h4>
+      <span class="material-symbols-outlined cursor"  (click)="redirect()">
+        arrow_back
+      </span>
   </div>
 
   <div class="card-body">
@@ -15,15 +18,6 @@
             <label for="description" class="form-label">Descrição</label>
              <textarea class="form-control" formControlName="description" id="description" placeholder="Descrição" rows="3"></textarea>
           </div>
-
-          <!-- <div class="col-12">
-            <label for="status" class="form-label">Status</label>
-
-            <select class="form-select" formControlName="status" id="status" [compareWith]="compareFilter" aria-label="Default select example">
-               <option selected>Selecione</option>
-              <option *ngFor="let statu of status" [ngValue]="statu">{{ statu.label }}</option>
-            </select>
-          </div> -->
 
           <div class="col-12">
 
@@ -52,7 +46,7 @@
 
           <div class="col-12">
 
-          <button class="btn btn-primary" (click)="onSubmit()" [disabled]="formTodo.invalid">
+          <button class="btn btn-warning d-flex justify-content-center" (click)="onSubmit()" [disabled]="formTodo.invalid">
             <span class="material-symbols-outlined">
               add
             </span>

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { FormBuilder, UntypedFormBuilder, Validators } from '@angular/forms';
+import { Location } from '@angular/common';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { TodoService } from '@shared/index';
-import { StatusEnum, StatusEnumMensagem } from '@shared/index';
+import { StatusEnum } from '@shared/index';
 import { ptBrLocale } from 'ngx-bootstrap/locale';
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { Item } from 'src/app/interface/todo';
@@ -29,12 +30,16 @@ export class TodoFormComponent {
   constructor(
     public todoService: TodoService,
     private fb: UntypedFormBuilder,
-    private localeService: BsLocaleService
+    private localeService: BsLocaleService,
+    private location: Location
   ) {
 
     this.localeService.use('pt-br');
    }
 
+   redirect() {
+    this.location.back();
+   }
   onSubmit(): void {
 
     const form = this.formTodo.getRawValue()
