@@ -20,8 +20,6 @@
             <th scope="col" class="text-center">ID</th>
             <th scope="col">Titulo</th>
             <th scope="col">Descrição</th>
-            <th scope="col">Início</th>
-            <th scope="col">Fim</th>
             <th scope="col">Status</th>
             <th scope="col" class="text-center">Ações</th>
           </tr>
@@ -33,12 +31,6 @@
                 <th  class="text-center" scope="row">{{ todo.id }}</th>
                 <td>{{todo.title }}</td>
                 <td>{{todo.description }}</td>
-                <td>
-                  {{todo.dateCreate | date: 'dd/MM/yyyy: hh:mm:ss' }}
-                </td>
-                <td>
-                  {{todo.dateConclusion | date: 'dd/MM/yyyy: hh:mm:ss'}}
-                </td>
                 <td>
                   <span [appStatusBadge]="todo.status">{{todo.status | statusTransalater }}</span>
                 </td>

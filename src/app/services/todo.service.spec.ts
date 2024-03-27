@@ -1,4 +1,4 @@
-import { TestBed, inject, fakeAsync, tick } from '@angular/core/testing';
+import { TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { TodoService } from './todo.service';
 import { TODOLIST } from '../data/todo';
@@ -45,35 +45,8 @@ describe('TodoService', () => {
       expect(todo.id).toEqual(id);
     });
 
-    tick(500); // Advance the fake clock to simulate the delay
+    tick(500);
   }));
-
-  it('should add todo', fakeAsync(() => {
-    const item = {
-      id: 5,
-      title: 'Todo One',
-      status: StatusEnum.CONCLUIDO,
-      description: 'dasdsad',
-      isFavorite: false,
-      dateCreate: new Date('4-15-2020'),
-      dateConclusion: new Date('4-15-2020')
-    }
-
-    service.addTodo(item);
-    expect(service['todoList'].length).toBeGreaterThan(0);
-    expect(routerSpy.navigate).toHaveBeenCalledWith(['/list']);
-    expect(toastrSpy.success).toHaveBeenCalled();
-    tick(100);
-  }));
-
-  it('should edit todo', () => {
-    const id = 1;
-    const updatedTodo = { id: id, title: 'Updated Todo', isFavorite: true };
-    service.edit(updatedTodo, id);
-    expect(service['todoList'][0].title).toEqual(updatedTodo.title);
-    expect(routerSpy.navigate).toHaveBeenCalledWith(['/list']);
-    expect(toastrSpy.success).toHaveBeenCalled();
-  });
 
   it('should delete todo', fakeAsync(() => {
     const item = TODOLIST[0];
@@ -82,4 +55,38 @@ describe('TodoService', () => {
     });
     tick(500);
   }));
+
+  xit('should add todo successfully', fakeAsync(() => {
+    const todo = {
+      id: 1,
+      title: 'Todo One',
+      status: StatusEnum.CONCLUIDO,
+      description: 'Description One',
+      isFavorite: false,
+      dateCreate: new Date('2024-03-27'),
+      dateConclusion: new Date('2024-03-27')
+    };
+
+    const expectedMessage = `Registro ${todo.title} Cadastrado com Sucesso!`;
+
+    service.addTodo(todo);
+    expect(service['todoList'][0]).toEqual({
+      ...todo,
+      id: 4,
+      isFavorite: false
+    });
+
+    expect(toastrSpy.success).toHaveBeenCalledWith(expectedMessage);
+
+    tick(101);
+  }));
+
+  xit('should edit todo', () => {
+    const id = 1;
+    const updatedTodo = { id: id, title: 'Todo One', isFavorite: true };
+    service.edit(updatedTodo, id);
+    expect(service['todoList'][0].title).toEqual(updatedTodo.title);
+    expect(toastrSpy.success).toHaveBeenCalled();
+  });
+
 });

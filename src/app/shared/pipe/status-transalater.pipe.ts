@@ -8,6 +8,6 @@ export class StatusTransalaterPipe implements PipeTransform {
 
   transform(value: StatusEnum): any {
     return StatusEnumMensagem[value];
-}
+  }
 
 }

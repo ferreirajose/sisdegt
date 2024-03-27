@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { StatusEnum, StatusEnumMensagem, TodoService } from '@shared/index';
@@ -28,7 +29,8 @@ export class EditTodoComponent implements OnInit {
     public todoService: TodoService,
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
-    private localeService: BsLocaleService
+    private localeService: BsLocaleService,
+    private location: Location
   ) {
       this.localeService.use('pt-br');
   }
@@ -40,10 +42,13 @@ export class EditTodoComponent implements OnInit {
         return this.todoService.getById(Number(this.id))
       }),
       tap(item => {
-        console.log(item)
         this.setForm(item)
       }),
     ).subscribe()
+  }
+
+  redirect() {
+    this.location.back();
   }
 
   get status () {

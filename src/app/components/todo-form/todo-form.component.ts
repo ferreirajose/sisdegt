@@ -13,16 +13,15 @@ defineLocale('pt-br', ptBrLocale);
 @Component({
   selector: 'app-todo-form',
   templateUrl: './todo-form.component.html',
-  styleUrls: ['./todo-form.component.scss']
+  styleUrls: ['./todo-form.component.scss'],
 })
 export class TodoFormComponent {
-
   formTodo = this.fb.group({
     title: ['', [Validators.required]],
     description: ['', [Validators.required]],
     status: [null],
-    dateCreate:[],
-    dateConclusion:[],
+    dateCreate: [],
+    dateConclusion: [],
   });
 
   maxDate = new Date();
@@ -33,24 +32,21 @@ export class TodoFormComponent {
     private localeService: BsLocaleService,
     private location: Location
   ) {
-
     this.localeService.use('pt-br');
-   }
+  }
 
-   redirect() {
+  redirect() {
     this.location.back();
-   }
-  onSubmit(): void {
+  }
 
-    const form = this.formTodo.getRawValue()
+  onSubmit(): void {
+    const form = this.formTodo.getRawValue();
     const newForm = {
       ...form,
-      status: StatusEnum.PENDENTE
-    }
+      status: StatusEnum.PENDENTE,
+    };
 
     this.todoService.addTodo(newForm as Item);
     this.formTodo.reset();
   }
-
-
 }
