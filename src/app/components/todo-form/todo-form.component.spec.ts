@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Location } from '@angular/common';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import { TodoService } from '@shared/index';
+import { StatusEnum, TodoService } from '@shared/index';
 import { TodoFormComponent } from './todo-form.component';
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ToastrModule } from 'ngx-toastr';
@@ -54,13 +54,74 @@ describe('TodoFormComponent', () => {
     expect(locationService.back).toHaveBeenCalled();
   });
 
-  it('should reset form and add new todo on calling onSubmit()', () => {
+  // it('should reset form and add new todo on calling onSubmit()', () => {
+
+  it('should not add new todo if form is invalid', () => {
+
     const resetSpy = spyOn(component.formTodo, 'reset');
+
+    component.formTodo.setValue({
+      title: '',
+      description: 'Test Description',
+      status: null,
+      dateCreate: new Date(),
+      dateConclusion: null
+    });
 
     component.onSubmit();
 
-    expect(todoService.addTodo).toHaveBeenCalled();
+    expect(todoService.addTodo).not.toHaveBeenCalled();
+    expect(resetSpy).not.toHaveBeenCalled();
+  });
+
+  it('should reset form and add new todo on calling onSubmit() if form is valid', () => {
+
+    const resetSpy = spyOn(component.formTodo, 'reset');
+
+    component.formTodo.setValue({
+      title: 'Test Todo',
+      description: 'Test Description',
+      status: null,
+      dateCreate: new Date(),
+      dateConclusion: null
+    });
+
+    component.onSubmit();
+
+    expect(todoService.addTodo).toHaveBeenCalledWith(jasmine.objectContaining({
+      title: 'Test Todo',
+      description: 'Test Description',
+      status: StatusEnum.PENDENTE,
+    }));
     expect(resetSpy).toHaveBeenCalled();
   });
+
+  it('should return false for a valid and untouched field', () => {
+    component.formTodo.setValue({
+      title: 'Test Title',
+      description: 'Test Description',
+      status: null,
+      dateCreate: new Date(),
+      dateConclusion: null
+    });
+
+    expect(component.isFieldValid('title')).toBe(false);
+  });
+
+  it('should return false for a valid and touched field', () => {
+
+    component.formTodo.setValue({
+      title: 'Test Title',
+      description: 'Test Description',
+      status: null,
+      dateCreate: new Date(),
+      dateConclusion: null
+    });
+
+    component.formTodo.get('title')?.markAsTouched();
+
+    expect(component.isFieldValid('title')).toBe(false);
+  });
+
 });
 

@@ -40,7 +40,7 @@ export class TodoService {
       isFavorite: false
     }
 
-    this.todoList.unshift(item);
+    this.todoList.push(item);
 
     this.navigateTo('/list', msn);
 
