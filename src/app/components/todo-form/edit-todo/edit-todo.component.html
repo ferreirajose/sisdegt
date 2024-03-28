@@ -11,12 +11,16 @@
         <div class="row g-3">
 
           <div class="col-12">
-            <label for="title" class="form-label">Título</label>
-            <input type="text" formControlName="title" class="form-control" id="title" placeholder="Título">
+            <label for="title" class="form-label">Título <span class="link-danger">*</span></label>
+            <input type="text" formControlName="title" class="form-control" [ngClass]="displayFieldCss('title')" id="title" placeholder="Título">
+            <app-error-message class="invalid-feedback" [displayError]="isFieldValid('title')" errorMsg="Campo Obrigatorio"></app-error-message>
+
           </div>
           <div class="col-12">
-            <label for="description" class="form-label">Descrição</label>
-             <textarea class="form-control" formControlName="description" id="description" placeholder="Descrição" rows="3"></textarea>
+            <label for="description" class="form-label">Descrição <span class="link-danger">*</span></label>
+             <textarea class="form-control" [ngClass]="displayFieldCss('description')" formControlName="description" id="description" placeholder="Descrição" rows="3"></textarea>
+             <app-error-message class="invalid-feedback" [displayError]="isFieldValid('description')" errorMsg="Campo Obrigatorio"></app-error-message>
+
           </div>
 
           <div class="col-12">

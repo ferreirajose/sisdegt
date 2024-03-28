@@ -54,8 +54,6 @@ describe('TodoFormComponent', () => {
     expect(locationService.back).toHaveBeenCalled();
   });
 
-  // it('should reset form and add new todo on calling onSubmit()', () => {
-
   it('should not add new todo if form is invalid', () => {
 
     const resetSpy = spyOn(component.formTodo, 'reset');

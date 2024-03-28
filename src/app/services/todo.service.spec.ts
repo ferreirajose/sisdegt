@@ -81,9 +81,9 @@ describe('TodoService', () => {
     tick(101);
   }));
 
-  xit('should edit todo', () => {
+  it('should edit todo', () => {
     const id = 1;
-    const updatedTodo = { id: id, title: 'Todo One', isFavorite: true };
+    const updatedTodo = { id: id, title: 'Todo Two', isFavorite: true };
     service.edit(updatedTodo, id);
     expect(service['todoList'][0].title).toEqual(updatedTodo.title);
     expect(toastrSpy.success).toHaveBeenCalled();

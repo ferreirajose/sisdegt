@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { StatusEnum, StatusEnumMensagem, TodoService } from '@shared/index';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
@@ -18,7 +18,7 @@ export class EditTodoComponent implements OnInit {
     title: ['', [Validators.required]],
     description: ['', [Validators.required]],
     status: [null],
-    dateCreate:[],
+    dateCreate: [],
     dateConclusion:[],
   });
 
@@ -61,6 +61,11 @@ export class EditTodoComponent implements OnInit {
     const form = this.formTodo.getRawValue();
     const status = (form.status && form.status['val']) ? form.status['val'] : StatusEnum.PENDENTE;
 
+    if (this.formTodo.invalid) {
+      this.validateAllFormFields(this.formTodo);
+      return
+    }
+
     const item = {
       ...form,
       status
@@ -83,6 +88,29 @@ export class EditTodoComponent implements OnInit {
     }
 
     this.formTodo.patchValue(item);
+  }
+
+  isFieldValid(field: string): boolean | undefined {
+    return !this.formTodo.get(field)?.valid && this.formTodo.get(field)?.touched;
+  }
+
+  displayFieldCss(field: string) {
+    return {
+      'is-invalid': this.isFieldValid(field)
+    };
+  }
+
+  private validateAllFormFields(formGroup: FormGroup): void {
+    Object.keys(formGroup.controls).forEach(field => {
+
+      const control = formGroup.get(field);
+      if (control instanceof FormControl) {
+        control.markAsTouched({ onlySelf: true });
+      } else if (control instanceof FormGroup) {
+        this.validateAllFormFields(control);
+      }
+
+    });
   }
 
 }

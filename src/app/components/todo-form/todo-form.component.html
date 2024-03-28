@@ -17,8 +17,8 @@
 
           </div>
           <div class="col-12">
-            <label for="description" class="form-label">Descrição</label>
-             <textarea class="form-control" formControlName="description" id="description"  [ngClass]="displayFieldCss('description')" placeholder="Descrição" rows="3"></textarea>
+            <label for="description" class="form-label">Descrição <span class="link-danger">*</span></label>
+             <textarea class="form-control" formControlName="description" id="description" [ngClass]="displayFieldCss('description')" placeholder="Descrição" rows="3"></textarea>
              <app-error-message class="invalid-feedback" [displayError]="isFieldValid('description')" errorMsg="Campo Obrigatorio"></app-error-message>
 
           </div>
@@ -27,22 +27,15 @@
 
             <div class="row">
               <div class="col-xs-12 col-12 col-sm-6 col-md-4 form-group mb-3">
-                <label for="status" class="form-label">Início</label>
+                <label for="status" class="form-label">Início <span class="link-danger">*</span></label>
 
-                <input type="text" class="form-control mb-3" placeholder="Data de Início" bsDatepicker readonly  formControlName="dateCreate"
-                  [bsConfig]="{
-                    minDate: maxDate
-                  }"
-                />
+                <input type="text" class="form-control mb-3" placeholder="Data de Início" bsDatepicker readonly  formControlName="dateCreate" [ngClass]="displayFieldCss('dateCreate')" [bsConfig]="{minDate: maxDate}"/>
+                <app-error-message class="invalid-feedback" [displayError]="isFieldValid('dateCreate')" errorMsg="Campo Obrigatorio"></app-error-message>
+
               </div>
               <div class="col-xs-12 col-12 col-sm-6 col-md-4 form-group mb-3">
                 <label for="status" class="form-label">Fim</label>
-                <input type="text" class="form-control mb-3"
-                       placeholder="Data de Conclusão" bsDatepicker readonly formControlName="dateConclusion"
-                       [bsConfig]="{
-                        minDate: maxDate
-                      }"
-                 />
+                <input type="text" class="form-control mb-3" placeholder="Data de Conclusão" bsDatepicker readonly formControlName="dateConclusion" [bsConfig]="{minDate: maxDate}"/>
               </div>
             </div>
 
@@ -50,7 +43,7 @@
 
           <div class="col-12">
 
-          <button class="btn btn-warning d-flex justify-content-center" (click)="onSubmit()" >
+          <button class="btn btn-warning d-flex justify-content-center" (click)="onSubmit()" [disabled]="formTodo.invalid">
             <span class="material-symbols-outlined">
               add
             </span>

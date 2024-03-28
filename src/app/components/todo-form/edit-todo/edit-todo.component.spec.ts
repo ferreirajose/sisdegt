@@ -75,4 +75,21 @@ describe('EditTodoComponent', () => {
 
     expect(todoService.edit).toHaveBeenCalledWith(formData, 1);
   });
+
+  it('should return false for a valid and touched field', () => {
+
+    component.formTodo.setValue({
+      id: null,
+      title: 'Test Title',
+      description: 'Test Description',
+      status: null,
+      dateCreate: null,
+      dateConclusion: null,
+    });
+
+    component.formTodo.get('title')?.markAsTouched();
+
+    expect(component.isFieldValid('title')).toBe(false);
+  });
+
 });

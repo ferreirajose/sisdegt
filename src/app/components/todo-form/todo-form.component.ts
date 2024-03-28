@@ -20,7 +20,7 @@ export class TodoFormComponent {
     title: ['', [Validators.required]],
     description: ['', [Validators.required]],
     status: [null],
-    dateCreate: [],
+    dateCreate: ['', [Validators.required]],
     dateConclusion: [],
   });
 
@@ -56,7 +56,7 @@ export class TodoFormComponent {
     this.formTodo.reset();
   }
 
-  isFieldValid(field: string) {
+  isFieldValid(field: string): boolean | undefined {
     return !this.formTodo.get(field)?.valid && this.formTodo.get(field)?.touched;
   }
 
