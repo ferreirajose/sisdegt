@@ -44,3 +44,10 @@ Before you begin, ensure you have the following installed:
     ng build --prod
     ```
 
+## Problems with installing dependencies
+
+  try downloading using the command below
+  
+  ```
+   npm i --legacy-peer-deps
+  ```
