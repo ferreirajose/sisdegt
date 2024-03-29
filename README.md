@@ -34,12 +34,20 @@ Before you begin, ensure you have the following installed:
     ```
     npm start
     ```
-2. **Run unit tests:**
+
+
+2. **Accessing the project in the browser:**
+
+    ```
+    http://localhost:4200/
+    ```
+
+3. **Run unit tests:**
     
     ```
     npm run test
     ```
-3. **Build the project:**
+4. **Build the project:**
     ```
     ng build --prod
     ```
