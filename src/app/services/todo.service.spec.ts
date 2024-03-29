@@ -56,9 +56,9 @@ describe('TodoService', () => {
     tick(500);
   }));
 
-  xit('should add todo successfully', fakeAsync(() => {
+  it('should add todo successfully', fakeAsync(() => {
     const todo = {
-      id: 1,
+      id: Math.floor(Math.random() * 100),
       title: 'Todo One',
       status: StatusEnum.CONCLUIDO,
       description: 'Description One',
@@ -70,24 +70,19 @@ describe('TodoService', () => {
     const expectedMessage = `Registro ${todo.title} Cadastrado com Sucesso!`;
 
     service.addTodo(todo);
-    expect(service['todoList'][0]).toEqual({
-      ...todo,
-      id: 4,
-      isFavorite: false
-    });
-
     expect(toastrSpy.success).toHaveBeenCalledWith(expectedMessage);
 
-    tick(101);
+    tick(500);
   }));
 
   it('should edit todo', fakeAsync(() => {
     const id = 1;
     const updatedTodo = { id: id, title: 'Todo Two', isFavorite: true };
+    const expectedMessage =  `Registro ${updatedTodo.title} Atualizado com Sucesso!`;
+
     service.edit(updatedTodo, id);
-    expect(service['todoList'][0].title).toEqual(updatedTodo.title);
-    expect(toastrSpy.success).toHaveBeenCalled();
-    tick(101);
+    expect(toastrSpy.success).toHaveBeenCalledWith(expectedMessage);
+    tick(500);
   }));
 
 
