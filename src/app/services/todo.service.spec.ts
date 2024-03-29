@@ -81,12 +81,14 @@ describe('TodoService', () => {
     tick(101);
   }));
 
-  it('should edit todo', () => {
+  it('should edit todo', fakeAsync(() => {
     const id = 1;
     const updatedTodo = { id: id, title: 'Todo Two', isFavorite: true };
     service.edit(updatedTodo, id);
     expect(service['todoList'][0].title).toEqual(updatedTodo.title);
     expect(toastrSpy.success).toHaveBeenCalled();
-  });
+    tick(101);
+  }));
+
 
 });
