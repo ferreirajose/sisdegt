@@ -31,7 +31,7 @@ export class TodoService {
   }
 
   addTodo(todo: Item) {
-    let id = this.todoList.length + 2;
+    let id = Math.floor(Math.random() * 100);
     const msn =  `Registro ${todo.title} Cadastrado com Sucesso!`;
 
     const item: Todo = {
