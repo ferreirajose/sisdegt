@@ -75,15 +75,14 @@ describe('TodoService', () => {
     tick(500);
   }));
 
-  it('should edit todo', fakeAsync(() => {
+  it('should edit todo', () => {
     const id = 1;
     const updatedTodo = { id: id, title: 'Todo Two', isFavorite: true };
     const expectedMessage =  `Registro ${updatedTodo.title} Atualizado com Sucesso!`;
 
     service.edit(updatedTodo, id);
-    expect(toastrSpy.success).toHaveBeenCalledWith(expectedMessage);
-    tick(1000);
-  }));
 
+    expect(toastrSpy.success).toHaveBeenCalledWith(expectedMessage);
+  });
 
 });
