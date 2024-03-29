@@ -82,7 +82,7 @@ describe('TodoService', () => {
 
     service.edit(updatedTodo, id);
     expect(toastrSpy.success).toHaveBeenCalledWith(expectedMessage);
-    tick(500);
+    tick(1000);
   }));
 
 
